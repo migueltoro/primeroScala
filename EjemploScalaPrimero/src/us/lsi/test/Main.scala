@@ -6,9 +6,15 @@ import us.lsi.ruta.Ruta
 import us.lsi.ruta.Marca
 import us.lsi.tools.{FileTools,StringTools}
 import us.lsi.tools.Extensions._
+import us.lsi.tools.JsonUtil
 import us.lsi.montecarlo.Mano
 import us.lsi.whatsapp.Mensaje
 import us.lsi.whatsapp.Grupo
+import us.lsi.sevici.Red
+import us.lsi.sevici.Estacion
+import us.lsi.sevici.Pojo
+
+
 
 
 object Main {
@@ -63,9 +69,26 @@ object Main {
      val r = g.getPalabrasCaracteristicasDeUsuario("Sheldon",2).toSeq.toSortedMap(Ordering[String].reverse)
       println(r.mkString("\n"))
    }
+
+   
+   def test10() : Unit = {
+//     val result = scala.io.Source.fromURL("http://api.citybik.es/v2/networks/sevici").mkString
+//     println(result)
+//     val json = fromURL("http://api.citybik.es/v2/networks/sevici").mkString
+//     val r = JsonUtil.fromJson[Pojo.Network](json)
+     val r = Red.ofUrl("http://api.citybik.es/v2/networks/sevici")
+     print(r)
+   }
+   
+   def test11() : Unit = {
+     val e = Estacion.parse("149_CALLE ARROYO,20,11,9,37.397829929383,-5.97567172039552")
+      println(e)
+     val r = Red.of()
+     println(r)
+   }
    
   def main(args: Array[String]): Unit = {
-    test9()
+    test11()
   }
   
 }
