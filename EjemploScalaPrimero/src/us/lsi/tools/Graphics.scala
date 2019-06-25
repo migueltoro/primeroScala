@@ -44,7 +44,7 @@ object Graphics {
 	}
 
 	private def filaPieChart[E](e: Integer, nombres: List[String], datos:List[E]): String = {
-		f"[${nombres(e)}%s',${datos(e)}%s]"
+		f"[${nombres(e)}%s,${datos(e)}%s]"
 	}
 	
 	/**
@@ -70,7 +70,7 @@ object Graphics {
 	}
 
 	private def columnaBarChart[E](e: Integer,nombresColumna: List[String],datos: List[E]): String = {
-		f"[${nombresColumna(e)}%s',${datos(e)}%s]"
+		f"[\'${nombresColumna(e)}%s\',${datos(e)}%s]"
 	}
   
 }

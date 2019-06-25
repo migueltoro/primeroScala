@@ -6,23 +6,23 @@
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
+
         var data = google.visualization.arrayToDataTable([
         {campos},
-        {data}]);
+        {data}]
+        );
 
         var options = {
-          title: {title},
-          curveType: 'function',
-          legend: { position: 'bottom' }
+          title: {title}
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
       }
     </script>
   </head>
   <body>
-    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
   </body>
 </html>

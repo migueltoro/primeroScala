@@ -5,8 +5,8 @@ import java.io._
 
 object FileTools {
   
-  def lines(file: String): List[String] = {
-    scala.io.Source.fromFile(file).getLines.toList
+  def lines(file: String, enc: String="UTF8"): List[String] = {
+    scala.io.Source.fromFile(file,enc=enc).getLines.toList
   }
   
   def text(file: String): String = {

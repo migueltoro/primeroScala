@@ -5,6 +5,10 @@ import us.lsi.data.Coordenadas3D
 import us.lsi.ruta.Ruta
 import us.lsi.ruta.Marca
 import us.lsi.tools.{FileTools,StringTools}
+import us.lsi.tools.Extensions._
+import us.lsi.montecarlo.Mano
+import us.lsi.whatsapp.Mensaje
+import us.lsi.whatsapp.Grupo
 
 
 object Main {
@@ -32,9 +36,36 @@ object Main {
 		println(r.longitud)
 		r.mostrarAltitud("ficheros/RutaAlturasOut.html")
    }
-  
+   
+   
+   def test6(): Unit = {
+     val m = Mano.random()
+     println(m)
+     println(m.fuerza(5000))
+     val m2 = Mano.of("(6H,4S,KC,9D,5H)")
+     println(m2)
+     println(m2.fuerza(5000))
+     m2.muestraMano("ficheros/CartasOut.html")
+   }
+   
+   def test7(): Unit = {
+     val m = Mensaje.parse("28/2/16 8:18 - Leonard: Bueno, ¿qué quieres hacer?")
+     println(m)
+   }
+   
+   def test8(): Unit = {
+     val g = Grupo.ofFile("resources/bigbangtheory_es.txt")   
+     println(g.getPalabrasCaracteristicasDeUsuario("Sheldon",2).toSeq.sortBy(x=>x._2).mkString("\n"))
+   }
+   
+   def test9(): Unit = {
+     val g = Grupo.ofFile("resources/bigbangtheory_es.txt")   
+     val r = g.getPalabrasCaracteristicasDeUsuario("Sheldon",2).toSeq.toSortedMap(Ordering[String].reverse)
+      println(r.mkString("\n"))
+   }
+   
   def main(args: Array[String]): Unit = {
-    test4()
+    test9()
   }
   
 }

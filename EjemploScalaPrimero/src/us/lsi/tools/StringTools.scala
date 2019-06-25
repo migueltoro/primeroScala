@@ -13,4 +13,8 @@ object StringTools {
 		out;
 	}
   
+  def split(s: String): Seq[String] = s.split("[ ,;.\n()?¿!¡:\"]").filter(x=>x.size>0)
+  
+  def splitTuple(p:(String,Int)): Seq[(String,Int)] = split(p._1).map(x=>(x,p._2))
+  
 }
