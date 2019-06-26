@@ -13,6 +13,7 @@ import us.lsi.whatsapp.Grupo
 import us.lsi.sevici.Red
 import us.lsi.sevici.Estacion
 import us.lsi.sevici.Pojo
+import scala.io.Source.fromURL
 
 
 
@@ -76,8 +77,9 @@ object Main {
 //     println(result)
 //     val json = fromURL("http://api.citybik.es/v2/networks/sevici").mkString
 //     val r = JsonUtil.fromJson[Pojo.Network](json)
-     val r = Red.ofUrl("http://api.citybik.es/v2/networks/sevici")
-     print(r)
+     val json = fromURL("http://api.citybik.es/v2/networks/sevici").mkString
+//     val r = Red.ofUrl("http://api.citybik.es/v2/networks/sevici")
+     print(json)
    }
    
    def test11() : Unit = {
@@ -88,7 +90,7 @@ object Main {
    }
    
   def main(args: Array[String]): Unit = {
-    test11()
+    test10()
   }
   
 }

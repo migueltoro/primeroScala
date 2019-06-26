@@ -39,7 +39,8 @@ object JsonUtil {
   
   def fromUrl[T](url: String): T = {
      val json = fromURL(url).mkString
-     JsonUtil.fromJson[T](json)
+     print(json)
+      mapper.readValue[T](json, new TypeReference[T] {})
   }
 
 }
