@@ -79,7 +79,7 @@ object Main {
 //     val r = JsonUtil.fromJson[Pojo.Network](json)
      val json = fromURL("http://api.citybik.es/v2/networks/sevici").mkString
 //     val r = Red.ofUrl("http://api.citybik.es/v2/networks/sevici")
-     print(json)
+     print(json("network"))
    }
    
    def test11() : Unit = {
