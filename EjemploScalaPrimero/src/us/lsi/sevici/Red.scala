@@ -2,8 +2,8 @@ package us.lsi.sevici
 
 import us.lsi.data.Coordenadas2D
 import us.lsi.tools.FileTools
-import us.lsi.tools.JsonUtil
-import us.lsi.sevici.Pojo._
+import us.lsi.sevici.pojo._
+
 
 
 class Red(nameP:String,hrefP:String,countryP:String,cityP: String,ubicacionP: Coordenadas2D, estacionesP:List[Estacion]) {
@@ -15,12 +15,24 @@ class Red(nameP:String,hrefP:String,countryP:String,cityP: String,ubicacionP: Co
 	val estaciones = estacionesP
 	
 	override def toString(): String = {
-    this.estaciones.map(_.toString).mkString("\n")
+    var r = "name=" + name + ", href=" + href + ", country=" + country + ", city=" + city + "]\n"
+    if(this.estaciones != null) {
+      r = r + this.estaciones.map(_.toString).mkString("\n")
+    }
+    r
   }
   
 }
 
 object Red { 
+  
+  def ifNull(ref:String, default:String): String ={
+    if(ref == null){
+      return default
+    }else{
+      ref
+    }
+  }
   
   val url = "http://api.citybik.es"
 	val file = "resources/estaciones.csv"
@@ -39,14 +51,24 @@ object Red {
 	}
   
   def ofUrl(url: String): Red =  {
-     val sevici = JsonUtil.fromUrl[Pojo.OneNetwork](url)
+     val sevici = Web.getRed(url);
      val network = sevici.network
 		 val name = network.name 
 		 val href = network.href
-		 val country = network.location.country
+		 val country = ifNull(network.location.country,"")
 		 val city = network.location.city
 		 val ubicacion = Coordenadas2D.of(network.location.latitude.toDouble,network.location.longitude.toDouble)
 		 val estaciones = network.stations.map(s=>Estacion.of(s)).toList
+		 Red.of(name, href, country, city, ubicacion,estaciones)
+	}
+  
+  def of(network: Network): Red =  {
+		 val name = network.name 
+		 val href = network.href
+		 val country = ifNull(network.location.country,"")
+		 val city = network.location.city
+		 val ubicacion = Coordenadas2D.of(network.location.latitude.toDouble,network.location.longitude.toDouble)
+		 val estaciones = null // network.stations.map(s=>Estacion.of(s)).toList
 		 Red.of(name, href, country, city, ubicacion,estaciones)
 	}
   

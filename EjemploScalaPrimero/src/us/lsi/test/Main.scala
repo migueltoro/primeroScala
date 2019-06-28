@@ -6,13 +6,12 @@ import us.lsi.ruta.Ruta
 import us.lsi.ruta.Marca
 import us.lsi.tools.{FileTools,StringTools}
 import us.lsi.tools.Extensions._
-import us.lsi.tools.JsonUtil
 import us.lsi.montecarlo.Mano
 import us.lsi.whatsapp.Mensaje
 import us.lsi.whatsapp.Grupo
 import us.lsi.sevici.Red
+import us.lsi.sevici.Redes
 import us.lsi.sevici.Estacion
-import us.lsi.sevici.Pojo
 import scala.io.Source.fromURL
 
 
@@ -73,24 +72,24 @@ object Main {
 
    
    def test10() : Unit = {
-//     val result = scala.io.Source.fromURL("http://api.citybik.es/v2/networks/sevici").mkString
-//     println(result)
-//     val json = fromURL("http://api.citybik.es/v2/networks/sevici").mkString
-//     val r = JsonUtil.fromJson[Pojo.Network](json)
-     val json = fromURL("http://api.citybik.es/v2/networks/sevici").mkString
-//     val r = Red.ofUrl("http://api.citybik.es/v2/networks/sevici")
-     print(json("network"))
-   }
-   
-   def test11() : Unit = {
      val e = Estacion.parse("149_CALLE ARROYO,20,11,9,37.397829929383,-5.97567172039552")
       println(e)
      val r = Red.of()
      println(r)
    }
    
+   def test11() : Unit = {
+     val sevici = Red.ofUrl("http://api.citybik.es/v2/networks/sevici")
+     print(sevici)
+   }
+   
+   def test12(): Unit = {
+    val redes = Redes.ofWeb()
+    print(redes)
+   }
+   
   def main(args: Array[String]): Unit = {
-    test10()
+    test11()
   }
   
 }

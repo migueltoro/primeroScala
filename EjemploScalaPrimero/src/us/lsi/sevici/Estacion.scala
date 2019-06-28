@@ -1,7 +1,8 @@
 package us.lsi.sevici
 
 import us.lsi.data.Coordenadas2D
-import us.lsi.sevici.Pojo._
+import us.lsi.sevici.pojo._
+//import us.lsi.sevici.Pojo._
 
 class Estacion(numeroP: Int, nameP: String, slotsP: Int, empty_slotsP: Int,  ubicacionP: Coordenadas2D) {
   val numero = numeroP
