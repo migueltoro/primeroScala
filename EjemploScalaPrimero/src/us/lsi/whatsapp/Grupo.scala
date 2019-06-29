@@ -121,7 +121,7 @@ class Grupo(mensajesP: List[Mensaje], palabrasHuecasP: Set[String]) {
   def getNumeroDePalabrasPorUsuario: Map[String,Int] = {
 		if(this.numeroDePalabrasPorUsuario==null) {
 			this.numeroDePalabrasPorUsuario = this.getFrecuenciasDePalabrasPorUsuario.toSeq		
-			  .grouping[String,Int,Int](fKey = e=>e._1._2, fMap = e=>e._2, fAcum = e=>e.sum)
+			  .grouping[String,Int,Int](fKey = {case ((p, u),f) => u}, fMap = {case ((p, u),f) => f}, fAcum= e=>e.sum)
 		}
 		this.numeroDePalabrasPorUsuario
 	}
@@ -138,7 +138,7 @@ class Grupo(mensajesP: List[Mensaje], palabrasHuecasP: Set[String]) {
   def getNumeroDePalabrasPorRestoDeUsuarios: Map[String,Int] = {
 		if(this.numeroDePalabrasPorRestoDeUsuarios==null) {
 			this.numeroDePalabrasPorRestoDeUsuarios = this.getFrecuenciasDePalabrasPorRestoDeUsuarios.toSeq
-			  .grouping[String,Int,Int](fKey = e=>e._1._2, fMap = e=>e._2, fAcum = e=>e.sum)
+			.grouping[String,Int,Int](fKey = {case ((p, u),f) => u}, fMap = {case ((p, u),f) => f}, fAcum= e=>e.sum)
 		}
 		this.numeroDePalabrasPorRestoDeUsuarios
 	}
