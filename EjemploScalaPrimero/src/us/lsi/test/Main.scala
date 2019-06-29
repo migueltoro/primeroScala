@@ -88,8 +88,13 @@ object Main {
     print(redes)
    }
    
+   def test13(): Unit = {
+    val redes = Redes.ofWeb()
+    print(redes.citiesWhithSeveralNetworks.mkString("\n"))
+   }
+   
   def main(args: Array[String]): Unit = {
-    test11()
+    test13()
   }
   
 }

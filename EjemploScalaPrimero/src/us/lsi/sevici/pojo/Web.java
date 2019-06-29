@@ -14,7 +14,5 @@ public class Web {
 		Networks redes = JsonTools.fromJSON_URL(url, Networks.class);
 		return redes;
 	}
-	
-	
 
 }

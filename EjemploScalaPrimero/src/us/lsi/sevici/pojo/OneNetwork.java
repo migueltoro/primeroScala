@@ -10,17 +10,4 @@ public class OneNetwork {
 	public OneNetwork() {
 		super();
 	}
-
-	public Network getNetwork() {
-		return network;
-	}
-
-	public void setNetwork(Network network) {
-		this.network = network;
-	}
-
-	@Override
-	public String toString() {
-		return "Sevici [network = " + network + "]";
-	}
 }

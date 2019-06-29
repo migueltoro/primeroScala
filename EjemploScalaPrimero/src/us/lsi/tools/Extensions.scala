@@ -41,5 +41,8 @@ object Extensions {
     def second = ls.tail.head
   }
   
+  implicit def elvisOperator[T](alt: =>T) = new {
+    def ?:[A >: T](p: A) = if (p == null) alt else p
+  }
   
 }
